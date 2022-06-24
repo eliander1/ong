@@ -1,8 +1,13 @@
+import 'package:app_ong/db/db.dart';
+import 'package:app_ong/screens/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
-TextEditingController _controllerEmail = TextEditingController();
 
 class Login extends StatelessWidget {
+  TextEditingController _controllerEmail = TextEditingController();
+  var emailDigitado;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,18 +17,12 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 32),
-                child: Image.asset(
-                  "assets/images/catdog.png",
-                  width: 200,
-                  height: 150,
-                ),
-              ),
               emailTextField(),
               ElevatedButton(
                 child: Text('Quero Adotar!'),
-                onPressed: () {},
+                onPressed: () {
+                  _validaEmail(context);
+                },
               )
             ]),
       ),
@@ -31,6 +30,21 @@ class Login extends StatelessWidget {
   }
 
 
+
+  void _validaEmail(BuildContext context) {
+      emailDigitado = _controllerEmail.text;
+    if (jsonUsers.contains(emailDigitado) &&
+        emailDigitado.contains("@") &&
+        emailDigitado.length > 13) {
+      Navigator.push(context, PageTransition(
+          child: Home(), type: PageTransitionType.bottomToTop));
+
+    } else {
+      //TODO snackBar de email nao cadastrado
+      debugPrint('$emailDigitado não ta no json');
+      _controllerEmail.text = '';
+    }
+  }
 
   Padding emailTextField() {
     return Padding(
@@ -45,8 +59,8 @@ class Login extends StatelessWidget {
             hintText: "Email",
             filled: true,
             fillColor: Colors.white,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32))),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32))),
       ),
     );
   }
