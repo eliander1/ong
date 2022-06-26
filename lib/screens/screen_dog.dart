@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import '../api/dog_api.dart';
-import '../models/dog.dart';
+import '../api/web_client.dart';
+import '../models/animal.dart';
 import 'details_screen.dart';
 
 
 class ScreenDog extends StatefulWidget {
   const ScreenDog({Key? key}) : super(key: key);
-
   @override
   State<ScreenDog> createState() => _ScreenDogState();
 }
 
 class _ScreenDogState extends State<ScreenDog> {
 
+  var url = 'https://api.thedogapi.com/v1/images/search';
   Future? dogs;
   ApiService apiService = ApiService();
 
@@ -28,7 +28,7 @@ class _ScreenDogState extends State<ScreenDog> {
         future: dogs,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<Dog> dogData = snapshot.data as List<Dog>;
+            List<Animal> dogData = snapshot.data as List<Animal>;
 
             return ListView.builder(
               itemCount: dogData.length,
@@ -41,7 +41,7 @@ class _ScreenDogState extends State<ScreenDog> {
                     minLeadingWidth: 50,
                     trailing: FutureBuilder(
                       future:
-                      apiService.getImageUrlByBreedId(dogData[index].id),
+                      ImageApi(typePet: url).getImageUrlByBreedId(dogData[index].id.toString()),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;
@@ -67,8 +67,10 @@ class _ScreenDogState extends State<ScreenDog> {
               },
             );
           } else if (snapshot.hasError) {
+
             return Center(
-              child: Text('Error: ${snapshot.error}'),
+              child: Text('Error: ${snapshot.error}, ${snapshot.stackTrace}'),
+
             );
           }
 
@@ -80,14 +82,18 @@ class _ScreenDogState extends State<ScreenDog> {
     dogs = apiService.getAllDogs();
   }
 
-  void showDetails(BuildContext context, Dog dogData) {
+  void showDetails(BuildContext context, Animal dogData) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return DetailsScreen(dog: dogData);
+          return DetailsScreen(
+              animal: dogData,
+              pet: url.toString());
         },
       ),
     );
 
   }
 }
+
+

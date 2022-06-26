@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import '../api/dog_api.dart';
-import '../models/dog.dart';
-
+import '../api/web_client.dart';
+import '../models/animal.dart';
 
 class DetailsScreen extends StatelessWidget {
 
-  final Dog dog;
-  DetailsScreen({required this.dog});
+  final Animal animal;
+  final String pet;
+
+  DetailsScreen({required this.animal, required this.pet});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(dog.name),
+        title: Text(animal.name),
       ),
       body: Column(
         children: [
           SizedBox(height: 20),
           FutureBuilder(
-            future: ApiService().getImageUrlByBreedId(dog.id),
+            future: ImageApi(typePet: pet).getImageUrlByBreedId(animal.id.toString()),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 String url = snapshot.data as String;
@@ -39,14 +40,16 @@ class DetailsScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(8, 24, 8, 8),
             child: Text(
-              dog.name,
+              animal.name,
               style: TextStyle(fontSize: 24),
             ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: Text(
-              dog.description,
+              animal.description ??
+
+                  'Descrição não informada pelo dono',
               style: TextStyle(fontSize: 16),
             ),
           ),

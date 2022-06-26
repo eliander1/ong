@@ -2,9 +2,9 @@ import 'package:app_ong/screens/screen_cat.dart';
 import 'package:app_ong/screens/screen_dog.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import '../api/dog_api.dart';
-import '../models/dog.dart';
-import 'details_screen.dart';
+
+import '../api/web_client.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -28,8 +28,10 @@ class _HomeState extends State<Home> {
       Icon(Icons.monitor_heart, size: 30)];
 
 
-    final telas = [ScreenCat(), ScreenDog()];
-
+    final telas = [
+      ScreenCat(),
+      ScreenDog()
+    ];
 
     return Scaffold(
       extendBody: true,

@@ -1,21 +1,20 @@
-import 'package:app_ong/api/cat_api.dart';
+import 'package:app_ong/api/web_client.dart';
 import 'package:flutter/material.dart';
-import '../models/Dog.dart';
-import '../models/cat.dart';
+import '../models/animal.dart';
 import 'details_screen.dart';
 
 
 class ScreenCat extends StatefulWidget {
   const ScreenCat({Key? key}) : super(key: key);
-
   @override
   State<ScreenCat> createState() => _ScreenCatState();
 }
 
 class _ScreenCatState extends State<ScreenCat> {
 
+  var url = 'https://api.thecatapi.com/v1/images/search';
   Future? cats;
-  ApiServiceCat apiService = ApiServiceCat();
+  ApiService apiService = ApiService();
 
   @override
   void initState() {
@@ -29,7 +28,7 @@ class _ScreenCatState extends State<ScreenCat> {
         future: cats,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<Cat> catData = snapshot.data as List<Cat>;
+            List<Animal> catData = snapshot.data as List<Animal>;
 
             return ListView.builder(
               itemCount: catData.length,
@@ -42,7 +41,8 @@ class _ScreenCatState extends State<ScreenCat> {
                     minLeadingWidth: 50,
                     trailing: FutureBuilder(
                       future:
-                      ApiServiceCat.getCatImageUrlByBreedId(catData[index].id),
+                      ImageApi(typePet: url).getImageUrlByBreedId(catData[index].id),
+
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;
@@ -50,7 +50,7 @@ class _ScreenCatState extends State<ScreenCat> {
                             image,
                             height: 100,
                             width: 100,
-                          ); // image is ready
+                          );
                         } else {
                           return Container(
                             height: 100,
@@ -81,12 +81,12 @@ class _ScreenCatState extends State<ScreenCat> {
     cats = apiService.getAllCats();
   }
 
-  // TODO CRIAR UMA CLASSE ANIMAL E PASSAR PARAMETROS DAS DESCRIPTIONS
-  void showDetails(BuildContext context, Dog dogData) {
+
+  void showDetails(BuildContext context, Animal catData) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return DetailsScreen(dog: dogData);
+          return DetailsScreen(animal: catData, pet: url);
         },
       ),
     );
