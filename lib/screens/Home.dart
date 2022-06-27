@@ -1,53 +1,61 @@
+import 'package:app_ong/screens/screen_all.dart';
 import 'package:app_ong/screens/screen_cat.dart';
 import 'package:app_ong/screens/screen_dog.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-import '../api/web_client.dart';
-
+import '../models/text_models.dart';
 
 class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
+    int index = 0;
 
 class _HomeState extends State<Home> {
-
-  int index = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-
-  Future? dogs;
-  ApiService apiService = ApiService();
-
-
-
   @override
   Widget build(BuildContext context) {
-    final items = [
-      Icon(Icons.pets_outlined, size: 30), //colocar um image.asset dentro de Icon()
-      Icon(Icons.monitor_heart, size: 30)];
 
+    final telas = [ScreenAll(), ScreenCat(), ScreenDog()];
 
-    final telas = [
-      ScreenCat(),
-      ScreenDog()
-    ];
 
     return Scaffold(
-      extendBody: true,
-
-      body: telas[index],
-
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        key: _bottomNavigationKey,
-        items: items,
-        animationCurve: Curves.bounceInOut,
-        animationDuration: Duration(milliseconds: 200),
-        index: index,
-        onTap: (index) => setState(() {this.index = index;}),
+      drawer: Drawer(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 24.0),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back),
+                alignment: Alignment.centerLeft,
+              ),
+              filtrosAnimais('Todos os Pets', 0),
+              filtrosAnimais('Gatos', 1),
+              filtrosAnimais('Cachorro', 2),
+            ],
+          ),
+        ),
       ),
+      appBar: modelAppBar,
+      body: telas[index],
     );
+  }
 
+  ListTile filtrosAnimais(String tipoAnimal, int indice) {
+    return ListTile(
+      leading: Icon(
+        Icons.pets,
+        color: mainColor,
+      ),
+      title: Text(tipoAnimal, style: TextStyle(fontFamily: mainFont),),
+      onTap: () {
+        setState((){
+          index = indice;
+          Navigator.pop(context);
+        });
+      },
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:app_ong/db/db.dart';
+import 'package:app_ong/models/text_models.dart';
 import 'package:app_ong/screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -12,11 +13,12 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.blueAccent,
+        color: mainColor,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.asset('assets/images/LoginOng.png', height: 200,),
               emailTextField(),
               ElevatedButton(
                 child: Text('Quero Adotar!'),
@@ -56,7 +58,7 @@ class Login extends StatelessWidget {
         style: TextStyle(fontSize: 20),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-            hintText: "Email",
+            hintText: "Digite seu email cadastrado",
             filled: true,
             fillColor: Colors.white,
             border:

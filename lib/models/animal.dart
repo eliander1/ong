@@ -2,13 +2,13 @@ class Animal {
   dynamic id;
   String name;
   String? description;
-  String? temperament;
+  String? url;
 
   Animal({
     required this.id,
     required this.name,
     required this.description,
-    required this.temperament
+    required this.url
   });
 
   factory Animal.fromJson(Map<String, dynamic> json) {
@@ -16,7 +16,7 @@ class Animal {
       id: json['id'],
       name: json['name'],
       description: json['description'],
-      temperament: json['temperament']
+      url: json['url']
     );
   }
   @override
@@ -24,7 +24,7 @@ class Animal {
     return
       'Animal: id=$id,'
           'name=$name, '
-      //    'description=$description'
+
 
         ;
   }

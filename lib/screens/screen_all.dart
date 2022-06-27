@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import '../api/web_client.dart';
 import '../models/animal.dart';
-import '../models/text_models.dart';
 import 'details_screen.dart';
 
 
-class ScreenDog extends StatefulWidget {
-  const ScreenDog({Key? key}) : super(key: key);
+class ScreenAll extends StatefulWidget {
+  const ScreenAll({Key? key}) : super(key: key);
   @override
-  State<ScreenDog> createState() => _ScreenDogState();
+  State<ScreenAll> createState() => _ScreenAllState();
 }
 
-class _ScreenDogState extends State<ScreenDog> {
+class _ScreenAllState extends State<ScreenAll> {
 
   var url = 'https://api.thedogapi.com/v1/images/search';
   Future? dogs;
@@ -37,7 +36,7 @@ class _ScreenDogState extends State<ScreenDog> {
                 return Card(
                   elevation: 5,
                   child: ListTile(
-                    title: Text(dogData[index].name, style: TextStyle(fontFamily: mainFont)),
+                    title: Text(dogData[index].name),
                     leading: FutureBuilder(
                       future:
                       ImageApi(typePet: url).getImageUrlByBreedId(dogData[index].id.toString()),
@@ -70,7 +69,6 @@ class _ScreenDogState extends State<ScreenDog> {
 
             return Center(
               child: Text('Error: ${snapshot.error}, ${snapshot.stackTrace}'),
-
             );
           }
 
@@ -79,7 +77,7 @@ class _ScreenDogState extends State<ScreenDog> {
   }
 
   void populateList() {
-    dogs = apiService.getAllDogs();
+    dogs = apiService.getAllAnimals();
   }
 
   void showDetails(BuildContext context, Animal dogData) {

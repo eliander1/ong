@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
 
-final fontLogin = 'poppins';
-final fontColor = Colors.white;
+final mainFont = "Poppins-Bold";
+final mainColor = Colors.indigo[800];
+final secondColor = Colors.green;
+
+final modelAppBar = AppBar(
+title: Text('CatDog, não compre adote!', style: TextStyle(fontFamily: mainFont),),
+backgroundColor: mainColor,
+);

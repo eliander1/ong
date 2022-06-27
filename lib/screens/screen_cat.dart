@@ -1,8 +1,8 @@
 import 'package:app_ong/api/web_client.dart';
 import 'package:flutter/material.dart';
 import '../models/animal.dart';
+import '../models/text_models.dart';
 import 'details_screen.dart';
-
 
 class ScreenCat extends StatefulWidget {
   const ScreenCat({Key? key}) : super(key: key);
@@ -11,7 +11,6 @@ class ScreenCat extends StatefulWidget {
 }
 
 class _ScreenCatState extends State<ScreenCat> {
-
   var url = 'https://api.thecatapi.com/v1/images/search';
   Future? cats;
   ApiService apiService = ApiService();
@@ -34,15 +33,15 @@ class _ScreenCatState extends State<ScreenCat> {
               itemCount: catData.length,
               itemBuilder: (context, index) {
                 return Card(
-                  semanticContainer: true,
                   elevation: 5,
                   child: ListTile(
-                    title: Text(catData[index].name),
-                    minLeadingWidth: 50,
-                    trailing: FutureBuilder(
-                      future:
-                      ImageApi(typePet: url).getImageUrlByBreedId(catData[index].id),
-
+                    title: Text(
+                      catData[index].name,
+                      style: TextStyle(fontFamily: mainFont),
+                    ),
+                    leading: FutureBuilder(
+                      future: ImageApi(typePet: url.toString())
+                          .getImageUrlByBreedId(catData[index].id.toString()),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;
@@ -50,6 +49,7 @@ class _ScreenCatState extends State<ScreenCat> {
                             image,
                             height: 100,
                             width: 100,
+                            fit: BoxFit.cover,
                           );
                         } else {
                           return Container(
@@ -81,7 +81,6 @@ class _ScreenCatState extends State<ScreenCat> {
     cats = apiService.getAllCats();
   }
 
-
   void showDetails(BuildContext context, Animal catData) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -90,6 +89,5 @@ class _ScreenCatState extends State<ScreenCat> {
         },
       ),
     );
-
   }
 }

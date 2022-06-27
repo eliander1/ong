@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'screens/Home.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-
-      home: Home(),
-    )
-);
+  runApp(MaterialApp(
+    home: Login(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
