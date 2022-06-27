@@ -10,9 +10,8 @@ class User{
 }
 
 List users = [
-  'eliander@gmail.com',
+  'camposeliander@gmail.com',
   'teste@gmail.com',
-  'confi@no.pai'
 ];
 
 final jsonUsers = jsonEncode(users);

@@ -1,5 +1,5 @@
 import 'package:app_ong/db/db.dart';
-import 'package:app_ong/models/text_models.dart';
+import 'package:app_ong/models/fonts_and_colors.dart';
 import 'package:app_ong/screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -12,21 +12,29 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: mainColor,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/LoginOng.png', height: 200,),
-              emailTextField(),
-              ElevatedButton(
-                child: Text('Quero Adotar!'),
-                onPressed: () {
-                  _validaEmail(context);
-                },
-              )
-            ]),
+      body: LayoutBuilder(
+        builder: (context, constraints) =>
+         SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Container(
+              color: mainColor,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/LoginOng.png', height: 200,),
+                    emailTextField(),
+                    ElevatedButton(
+                      child: Text('Quero Adotar!'),
+                      onPressed: () {
+                        _validaEmail(context);
+                      },
+                    )
+                  ]),
+            ),
+          ),
+        ),
       ),
     );
   }

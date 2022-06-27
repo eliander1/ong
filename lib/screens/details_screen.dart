@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../api/web_client.dart';
 import '../models/animal.dart';
+import '../models/app_bar.dart';
 import '../models/botao_adotar.dart';
-import '../models/text_models.dart';
+import '../models/fonts_and_colors.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Animal animal;
@@ -20,8 +21,8 @@ class DetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             FutureBuilder(
-              future: ImageApi(typePet: pet)
-                  .getImageUrlByBreedId(animal.id.toString()),
+              future: ImageApi(urlTypePet: pet)
+                  .getImageUrlByBreedId(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   String url = snapshot.data as String;

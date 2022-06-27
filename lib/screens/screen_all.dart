@@ -39,7 +39,7 @@ class _ScreenAllState extends State<ScreenAll> {
                     title: Text(dogData[index].name),
                     leading: FutureBuilder(
                       future:
-                      ImageApi(typePet: url).getImageUrlByBreedId(dogData[index].id.toString()),
+                      ImageApi(urlTypePet: url).getImageUrlByBreedId(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;

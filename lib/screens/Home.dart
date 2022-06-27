@@ -2,7 +2,8 @@ import 'package:app_ong/screens/screen_all.dart';
 import 'package:app_ong/screens/screen_cat.dart';
 import 'package:app_ong/screens/screen_dog.dart';
 import 'package:flutter/material.dart';
-import '../models/text_models.dart';
+import '../models/app_bar.dart';
+import '../models/fonts_and_colors.dart';
 
 class Home extends StatefulWidget {
   @override

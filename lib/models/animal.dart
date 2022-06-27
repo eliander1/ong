@@ -2,33 +2,21 @@ class Animal {
   dynamic id;
   String name;
   String? description;
-  String? url;
+  //String? url;
 
-  Animal({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.url
-  });
+  Animal(
+      {required this.id,
+      required this.name,
+      required this.description,
+      //required this.url
+      });
 
   factory Animal.fromJson(Map<String, dynamic> json) {
     return Animal(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      url: json['url']
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+        //url: json['image']['url'],
     );
   }
-  @override
-  String toString() {
-    return
-      'Animal: id=$id,'
-          'name=$name, '
-
-
-        ;
-  }
 }
-
-
-

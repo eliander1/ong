@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../api/web_client.dart';
 import '../models/animal.dart';
-import '../models/text_models.dart';
+import '../models/fonts_and_colors.dart';
 import 'details_screen.dart';
 
 
@@ -40,7 +40,7 @@ class _ScreenDogState extends State<ScreenDog> {
                     title: Text(dogData[index].name, style: TextStyle(fontFamily: mainFont)),
                     leading: FutureBuilder(
                       future:
-                      ImageApi(typePet: url).getImageUrlByBreedId(dogData[index].id.toString()),
+                      ImageApi(urlTypePet: url).getImageUrlByBreedId(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;

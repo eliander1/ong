@@ -1,7 +1,7 @@
 import 'package:app_ong/api/web_client.dart';
 import 'package:flutter/material.dart';
 import '../models/animal.dart';
-import '../models/text_models.dart';
+import '../models/fonts_and_colors.dart';
 import 'details_screen.dart';
 
 class ScreenCat extends StatefulWidget {
@@ -37,11 +37,12 @@ class _ScreenCatState extends State<ScreenCat> {
                   child: ListTile(
                     title: Text(
                       catData[index].name,
+
                       style: TextStyle(fontFamily: mainFont),
                     ),
                     leading: FutureBuilder(
-                      future: ImageApi(typePet: url.toString())
-                          .getImageUrlByBreedId(catData[index].id.toString()),
+                      future: ImageApi(urlTypePet: url.toString())
+                          .getImageUrlByBreedId(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           String image = snapshot.data as String;

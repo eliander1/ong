@@ -1,4 +1,4 @@
-import 'package:app_ong/models/text_models.dart';
+import 'package:app_ong/models/fonts_and_colors.dart';
 import 'package:flutter/material.dart';
 
 class BotaoAdotar extends StatelessWidget {
