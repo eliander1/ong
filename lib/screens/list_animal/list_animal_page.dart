@@ -20,11 +20,13 @@ class _ListAnimalPageState extends State<ListAnimalPage> {
   @override
   void initState() {
     super.initState();
-    listAnimalController.populateList(widget.animal);
+      listAnimalController.populateList(widget.animal);
   }
+
 
   @override
   Widget build(BuildContext context) {
+    listAnimalController.populateList(widget.animal);
     return FutureBuilder(
         future: listAnimalController.animal,
         builder: (context, snapshot) {
@@ -37,13 +39,13 @@ class _ListAnimalPageState extends State<ListAnimalPage> {
                 return Card(
                   elevation: 5,
                   child: ListTile(
-                    title: Text(dogData[index].name!),
-                    leading:Image.network(
+                    title:dogData[index].name != null ? Text(dogData[index].name!):Text('Sem nome'),
+                    leading:dogData[index].image != null ? dogData[index].image!.url != null ?Image.network(
                             dogData[index].image!.url!,
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,
-                          ),
+                          ):Icon(Icons.image): Icon(Icons.image),
                     onTap: () => showDetails(context, dogData[index]),
                   ),
                 );
@@ -68,7 +70,7 @@ class _ListAnimalPageState extends State<ListAnimalPage> {
         builder: (context) {
           return DetailsPage(
               animal: dogData,
-              pet: listAnimalController.url.toString());
+             );
         },
       ),
     );

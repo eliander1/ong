@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class FilterAnimal extends StatelessWidget{
   String? type;
-  Function? function;
+  Function()? function;
 
   FilterAnimal({Key? key, this.type,this.function}) : super(key: key);
   @override
@@ -14,7 +14,7 @@ class FilterAnimal extends StatelessWidget{
         color: OngAppTheme.mainColor,
       ),
       title: Text(type!, style:const TextStyle(fontFamily: OngAppTheme.mainFont),),
-      onTap:(){function;},
+      onTap:function,
     );
   }
 

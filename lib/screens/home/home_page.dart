@@ -3,8 +3,6 @@ import 'package:app_ong/widgets/ong_app_theme.dart';
 import 'package:app_ong/screens/list_animal/list_animal_page.dart';
 import 'package:flutter/material.dart';
 
-
-var index = 0;
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,10 +11,10 @@ class Home extends StatefulWidget {
 }
     
 class _HomeState extends State<Home> {
-
+     int index = 0;
   @override
   Widget build(BuildContext context) {
-
+ 
     final telas = [ListAnimalPage(animal: 'all',), ListAnimalPage(animal: 'cat'), ListAnimalPage(animal: 'dog')];
     return Scaffold(
       drawer: Drawer(
@@ -33,6 +31,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.centerLeft,
               ),
               FilterAnimal(type:'Todos os Pets', function: () {
+                
               setState((){
                 index = 0;
                 Navigator.pop(context);
@@ -62,5 +61,12 @@ class _HomeState extends State<Home> {
       body: telas[index],
     );
   }
+
+
+  // Widget navigator(){
+  //     if(index == 0){
+  //       return ListAnimalPage(animal: 'all',);
+  //     }
+  // }
 
 }

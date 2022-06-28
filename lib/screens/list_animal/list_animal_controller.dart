@@ -1,20 +1,16 @@
-import 'package:app_ong/api/web_client.dart';
+import 'package:app_ong/screens/list_animal/list_animal_repository.dart';
 
 class ListAnimalController{
-  var url = 'https://api.thedogapi.com/v1/images/search';
   Future? animal;
-  ApiService apiService = ApiService();
+  ListAnimalRepository listAnimalRepository = ListAnimalRepository();
 
   void populateList(String animalSearch) {
     if(animalSearch == 'all'){
-      print(animalSearch);
-        animal = apiService.getAllAnimals();
+        animal = listAnimalRepository.getAllAnimals();
     }else if(animalSearch == 'dog'){
-        print(animalSearch);
-        animal = apiService.getAllDogs();
+        animal = listAnimalRepository.getAllDogs();
     }else{
-         print(animalSearch);
-        animal = apiService.getAllCats();
+        animal = listAnimalRepository.getAllCats();
     }
   }
 

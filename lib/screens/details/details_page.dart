@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
   final Animal animal;
-  final String pet;
-  const DetailsPage({Key? key,required this.animal, required this.pet}): super(key: key);
+  const DetailsPage({Key? key,required this.animal}): super(key: key);
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -41,7 +40,7 @@ class _DetailsPageState extends State<DetailsPage> {
             Padding(
               padding:const EdgeInsets.fromLTRB(16, 16, 16, 8),
               child: Text(
-                widget.animal.description ?? 'Descrição não informada pelo dono',
+                widget.animal.description != null ? widget.animal.description! : 'Descrição não informada pelo dono',
                 style: TextStyle(fontSize: 16, fontFamily: OngAppTheme.mainFont),
               ),
             ),

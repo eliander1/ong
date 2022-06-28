@@ -14,9 +14,9 @@ class Animal {
       this.image});
 
   Animal.fromJson(Map<String, dynamic> json) {
-    id = json['id'].toString();
-    name = json['name'].toString();
-    description = json['description'].toString();
+    id =json['id'] != null? json['id'].toString(): '';
+    name =json['name'] != null ? json['name'].toString():'';
+    description =json['description'] != null ? json['description'].toString():'';
     image = json['image'] != null ? new AnimalImage.fromJson(json['image']) : null;
   }
 
