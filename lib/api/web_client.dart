@@ -54,21 +54,4 @@ class ApiService {
   }
 }
 
-class ImageApi {
-  String urlTypePet;
 
-  ImageApi({required this.urlTypePet});
-
-  Future<String> getImageUrlByBreedId() async {
-    final response = await http.get(Uri.parse(urlTypePet));
-
-    if (response.statusCode == 200) {
-      final result = json.decode(response.body);
-      Iterable list = result;
-      return list.map((model) => AnimalImage.fromJson(model)).toList()[0].url;
-    } else {
-      throw Exception(
-          'Failed to load data! ${response.statusCode}: ${response.body}');
-    }
-  }
-}

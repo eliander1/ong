@@ -1,22 +1,34 @@
+import 'package:app_ong/models/animal_image.dart';
+
 class Animal {
-  dynamic id;
-  String name;
+  String? id;
+  String? name;
   String? description;
-  //String? url;
+  AnimalImage? image;
 
   Animal(
-      {required this.id,
-      required this.name,
-      required this.description,
-      //required this.url
-      });
+      {
+      this.id,
+      this.name,
+      this.description,
+      this.image});
 
-  factory Animal.fromJson(Map<String, dynamic> json) {
-    return Animal(
-        id: json['id'],
-        name: json['name'],
-        description: json['description'],
-        //url: json['image']['url'],
-    );
+  Animal.fromJson(Map<String, dynamic> json) {
+    id = json['id'].toString();
+    name = json['name'].toString();
+    description = json['description'].toString();
+    image = json['image'] != null ? new AnimalImage.fromJson(json['image']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    if (this.image != null) {
+      data['image'] = this.image!.toJson();
+    }
+    return data;
   }
 }
+

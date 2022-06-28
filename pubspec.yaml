@@ -37,6 +37,7 @@ dependencies:
   page_transition:
   http: ^0.13.4
   curved_navigation_bar: ^1.0.3
+  shared_preferences: ^2.0.15
 
 
 dev_dependencies:

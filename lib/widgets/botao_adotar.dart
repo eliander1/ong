@@ -1,4 +1,4 @@
-import 'package:app_ong/models/fonts_and_colors.dart';
+import 'package:app_ong/widgets/ong_app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BotaoAdotar extends StatelessWidget {
@@ -12,9 +12,9 @@ class BotaoAdotar extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith<Color?>((states) {
             if (states.contains(MaterialState.pressed)) {
-              return secondColor;
+              return OngAppTheme.secondColor;
             }
-            return mainColor;
+            return OngAppTheme.mainColor;
           }),
           minimumSize: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
@@ -32,9 +32,9 @@ class BotaoAdotar extends StatelessWidget {
           }),
           textStyle: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
-              return TextStyle(fontSize: 12, fontFamily: mainFont);
+              return TextStyle(fontSize: 12, fontFamily: OngAppTheme.mainFont);
             }
-            return TextStyle(fontSize: 18, fontFamily: mainFont);
+            return TextStyle(fontSize: 18, fontFamily: OngAppTheme.mainFont);
           }),
         ),
         onPressed: () {
