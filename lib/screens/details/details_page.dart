@@ -1,8 +1,6 @@
-import 'package:app_ong/api/web_client.dart';
 import 'package:app_ong/models/animal.dart';
-import 'package:app_ong/widgets/ong_app_theme.dart';
 import 'package:app_ong/widgets/botao_adotar.dart';
-import 'package:app_ong/screens/details/details_controller.dart';
+import 'package:app_ong/widgets/ong_app_theme.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +13,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  DetailsController detailsController = DetailsController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

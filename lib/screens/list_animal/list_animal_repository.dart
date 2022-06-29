@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:app_ong/api/web_client.dart';
+import 'package:app_ong/constants/api_constants.dart';
 import 'package:app_ong/models/animal.dart';
 import 'package:http/http.dart' as http;
 

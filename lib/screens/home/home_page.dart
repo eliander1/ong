@@ -15,7 +15,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
  
-    final telas = [ListAnimalPage(animal: 'all',), ListAnimalPage(animal: 'cat'), ListAnimalPage(animal: 'dog')];
+    final telas = [ListAnimalPage(animal: 'all'), ListAnimalPage(animal: 'cat'), ListAnimalPage(animal: 'dog')];
+
     return Scaffold(
       drawer: Drawer(
         child: Padding(
@@ -31,28 +32,23 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.centerLeft,
               ),
               FilterAnimal(type:'Todos os Pets', function: () {
-                
               setState((){
                 index = 0;
                 Navigator.pop(context);
               });
-              print('pet home');
-              },),
+              }),
                FilterAnimal(type:'Gatos', function: () {
               setState((){
                 index = 1;
                 Navigator.pop(context);
               });
-                 print('cat home $index');
-              },),
+              }),
              FilterAnimal(type:'Cachorro', function: () {
-             
               setState((){
                 index = 2;
                 Navigator.pop(context);
               });
-               print('dog home $index');
-              },),
+              }),
             ],
           ),
         ),
