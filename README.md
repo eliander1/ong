@@ -6,7 +6,7 @@ https://youtu.be/j0lBonL1foQ
 # Proposta do projeto:
 
 
-##Requisitos obrigatórios
+## Requisitos obrigatórios
 
 - O APP deverá ser escrito em dart utilizando o flutter.
 
@@ -14,19 +14,18 @@ https://youtu.be/j0lBonL1foQ
 
 - Login
 
-Nesta tela validaremos apenas o e-mail (json) da pessoa que está tentando acessar o aplicativo.
+    Nesta tela validaremos apenas o e-mail (json) da pessoa que está tentando acessar o aplicativo.
 
 - Listagem dos pets
 
-Nesta listagem devemos considerar os gatos e cachorros. Podem estar listados de forma mesclada ou categorizados.
+    Nesta listagem devemos considerar os gatos e cachorros. Podem estar listados de forma mesclada ou categorizados.
 
 - Visualização das informações do pet
 
-Essa tela será exibida ao clicar em um pet na listagem. Nesta tela, devemos mostrar as informações do pet.
+    Essa tela será exibida ao clicar em um pet na listagem. Nesta tela, devemos mostrar as informações do pet.
 
 
-
-##Requisitos que serão considerados como plus
+## Requisitos que serão considerados como plus
 
 - Fácil troca de fontes e cores no código.
 
