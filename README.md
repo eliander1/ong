@@ -43,5 +43,5 @@ https://youtu.be/j0lBonL1foQ
 #### Próximos updates ####
 - Testes de widgets em todas as telas
 - Testes de fluxo.
-- Tratamento de erros e excessões 
+- Tratamento de erros e exceções 
 - Integração com crashlytics
